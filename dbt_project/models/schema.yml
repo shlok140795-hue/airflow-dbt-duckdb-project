@@ -1,0 +1,38 @@
+version: 2
+
+models:
+  # Existing model from your previous practical
+  - name: sales_summary
+    description: "Sales orders with calculated total amounts"
+
+    columns:
+      - name: order_id
+        data_tests:
+          - unique
+          - not_null
+
+      - name: customer_name
+        data_tests:
+          - not_null
+
+      - name: total_amount
+        data_tests:
+          - not_null
+
+  # New model for Exercise 6
+  - name: stg_sales
+    description: "Cleaned sales data from the raw source"
+
+    columns:
+      - name: order_id
+        data_tests:
+          - unique
+          - not_null
+
+      - name: customer
+        data_tests:
+          - not_null
+
+      - name: quantity
+        data_tests:
+          - not_null

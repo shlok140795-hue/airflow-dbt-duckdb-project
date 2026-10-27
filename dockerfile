@@ -1,0 +1,9 @@
+FROM apache/airflow:3.1.0
+
+COPY requirements.txt /requirements.txt
+
+USER airflow
+
+RUN pip install --no-cache-dir \
+    "apache-airflow==${AIRFLOW_VERSION}" \
+    -r /requirements.txt

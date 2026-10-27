@@ -1,0 +1,27 @@
+services:
+  sleek-airflow:                           #service name
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    image: airflow-dbt-duckdb:latest       #image name
+
+    ports:
+      - "8080:8080"   # Airflow UI
+      - "8085:8085"   # dbt documentation UI
+
+    environment:
+      AIRFLOW_HOME: /opt/airflow
+      AIRFLOW__CORE__EXECUTOR: LocalExecutor
+      AIRFLOW__CORE__LOAD_EXAMPLES: "False"
+
+    volumes:
+      - ./dags:/opt/airflow/dags
+      - ./logs:/opt/airflow/logs
+      - ./plugins:/opt/airflow/plugins
+      - ./dbt_project:/opt/airflow/dbt_project
+      - ./data:/opt/airflow/data
+
+    command: airflow standalone
+
+    restart: unless-stopped

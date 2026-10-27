@@ -1,0 +1,7 @@
+sales_project:
+  target: dev
+  outputs:
+    dev:
+      type: duckdb
+      path: /opt/airflow/data/sales.duckdb
+      threads: 1
